@@ -1,7 +1,6 @@
 # TemanKasir - Simple Free Webview-Based Software For Cashier Solution
 TemanKasir ialah project software berbasis webview yang dikembangkan menggunakan framework Next.JS dan React dengan bantuan Tauri untuk membantu keperluan kasir
 
-<br>
 
 # CATATAN PENTING!
 Sementara waktu, TemanKasir hanya dapat membantu membuatkan dan mencetak struk bedasarkan data toko dan produk yang ada.
@@ -11,8 +10,6 @@ Software ini juga masih dalam tahap pengembangan. Segala bentuk laporan, saran k
 Jika menemukan bug, punya saran, atau lainnya dapat menghubungiku via email di [hello@mhai.my.id](mailto:hello@mhai.my.id)
 
 Terimakasih :)
-
-<br>
 
 # Fitur
 ### Auto-Recipe
@@ -24,7 +21,6 @@ TemanKasir memiliki sistem untuk menyimpan data-data produk dengan rapih dan ter
 ### Cutomizable identitas toko
 TemanKasir memiliki opsi untuk mengubah dan menambahkan nama, alamat dan nomor telephone dari toko dan dapat muncul pada bagian header/atas struk
 
-<br>
 
 # Fitur yang akan mendatang
 ***Catatan:** Fitur mendatang ini tidak dapat di prediksi kapan akan rilisnya dikarenakan kesibukan developer.*
@@ -46,7 +42,6 @@ Menampung segala keperluan administrasi, termasuk didalamnya rekapitulasi dan ri
 ### Input opsi pembayaran (Tunai atau Hutang)
 Untuk sekarang, TemanKasir hanya dapat membantu mencetak struk. Kedepannya, akan ditambahkan juga opsi pembayaran, apakah tunai atau masuk kasbon/hutang.
 
-<br>
 
 # Penggunaan
 Aplikasi ini **100% gratis untuk digunakan dan dikembangkan lebih lanjut**.

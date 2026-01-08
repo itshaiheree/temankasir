@@ -13,6 +13,8 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
 
   const [showModal, setShowModal] = useState(false);
+  
+  const [errorId, setErrorId] = useState(false);
   const [editing, setEditing] = useState(null);
 
   const [form, setForm] = useState({
@@ -58,18 +60,43 @@ export default function ProductsPage() {
     setShowModal(true);
   };
 
-  const submit = async () => {
-    await invoke('product', {
-      internalId: form.internal_id,
-      id: form.id,
-      nama: form.nama,
-      harga: Number(form.harga),
-      stock: 0,
-    });
+const submit = async () => {
+  const existingProduct = products.find(p => p.id === form.id);
 
-    setShowModal(false);
-    loadProducts();
-  };
+  // TAMBAH DATA
+  if (!editing) {
+    if (existingProduct) {
+      setErrorId(true);
+      return;
+    }
+  }
+
+  // EDIT DATA
+  if (editing) {
+    // kalau ID dipakai produk lain
+    if (
+      existingProduct &&
+      existingProduct.internal_id !== form.internal_id
+    ) {
+      setErrorId(true);
+      return;
+    }
+  }
+
+  // SIMPAN (ADD / UPDATE)
+  await invoke('product', {
+    internalId: form.internal_id,
+    id: form.id,
+    nama: form.nama,
+    harga: Number(form.harga),
+    stock: 0,
+  });
+
+  setShowModal(false);
+  loadProducts();
+  setErrorId(false);
+};
+
 
   const remove = async (internalId) => {
     if (!confirm('Hapus produk ini?')) return;
@@ -163,10 +190,12 @@ export default function ProductsPage() {
 {showModal && (
   <div className="modal modal-open">
     <div className="modal-box">
-      <h3 className="font-bold text-lg mb-4">
+      <h3 className="font-bold text-lg mb-2">
         {editing ? 'Edit Produk' : 'Tambah Produk'}
       </h3>
+      {errorId && (<p className='text-red-500'>ID sudah ada, pilih ID yang lain!</p>)}
       <form
+      className='mt-4'
         onSubmit={async (e) => {
           e.preventDefault(); // cegah reload / tutup modal
           await submit();     // panggil fungsi submit manual
@@ -207,8 +236,12 @@ export default function ProductsPage() {
         <div className="modal-action">
           <button
             type="button"
-            className="btn"
-            onClick={() => setShowModal(false)}
+            className="btn btn-outline"
+            onClick={() => {
+              setShowModal(false)
+              setErrorId(false)
+            }
+            }
           >
             Batal
           </button>
